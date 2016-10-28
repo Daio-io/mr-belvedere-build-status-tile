@@ -1,6 +1,6 @@
 package io.daio.buildtile.tile
 
-class ReleaseBranchTile: BuildTileService() {
+class AndroidReleaseBranchTile : BuildTileService() {
 
     override val buildName: String
         get() = "android-release"

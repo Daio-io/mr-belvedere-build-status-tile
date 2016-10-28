@@ -12,9 +12,9 @@
         android:theme="@style/AppTheme">
 
         <service
-            android:name=".tile.DevBranchTile"
+            android:name=".tile.AndroidDevBranchTile"
             android:icon="@mipmap/ic_launcher"
-            android:label="Dev Tile"
+            android:label="Android Dev Tile"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE" />
@@ -22,9 +22,29 @@
         </service>
 
         <service
-            android:name=".tile.ReleaseBranchTile"
+            android:name=".tile.AndroidReleaseBranchTile"
             android:icon="@mipmap/ic_launcher"
-            android:label="Release Tile"
+            android:label="Android Release Tile"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+
+        <service
+            android:name=".tile.iOSDevBranchTile"
+            android:icon="@mipmap/ic_launcher"
+            android:label="iOS Dev Tile"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+
+        <service
+            android:name=".tile.iOSReleaseBranchTile"
+            android:icon="@mipmap/ic_launcher"
+            android:label="iOS Release Tile"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE" />
