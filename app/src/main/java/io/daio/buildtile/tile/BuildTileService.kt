@@ -4,6 +4,7 @@ import android.service.quicksettings.TileService
 import android.util.Log
 import io.daio.buildtile.Constants
 import io.daio.buildtile.api.jobs.BelvedereJobsAPI
+import io.daio.buildtile.api.model.Job
 
 abstract class BuildTileService : TileService() {
 
@@ -25,18 +26,19 @@ abstract class BuildTileService : TileService() {
         request()
     }
 
-    private fun updateTile(jobName: String?, status: String?) {
-        qsTile.label = "$jobName\n $status"
+    private fun updateTile(job: Job?) {
+        // TODO SET TILE ICON FOR BUILD STATUS
+        qsTile.label = "${job?.name}\n ${job?.version}"
         qsTile.updateTile()
     }
 
     private fun request() {
 
         jobsApi.jobs({
-            val release = it?.filter {
+            val job = it?.filter {
                 it.name.equals(buildName)
             }
-            updateTile(release?.first()?.name, release?.first()?.status)
+            updateTile(job?.first())
         })
     }
 

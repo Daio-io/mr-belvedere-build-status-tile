@@ -1,3 +1,5 @@
 package io.daio.buildtile.api.model
 
-data class Job(val name: String?, val status: String?)
+data class Job(val name: String?,
+               val status: String?,
+               val version: String?)
