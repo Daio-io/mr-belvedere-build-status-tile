@@ -1,8 +1,10 @@
 package io.daio.buildtile.tile
 
+import android.graphics.drawable.Icon
 import android.service.quicksettings.TileService
 import android.util.Log
 import io.daio.buildtile.Constants
+import io.daio.buildtile.R
 import io.daio.buildtile.api.jobs.BelvedereJobsAPI
 import io.daio.buildtile.api.model.Job
 
@@ -27,7 +29,12 @@ abstract class BuildTileService : TileService() {
     }
 
     private fun updateTile(job: Job?) {
-        // TODO SET TILE ICON FOR BUILD STATUS
+        when (job?.status) {
+            "success" -> qsTile.icon = Icon.createWithResource(applicationContext, R.drawable.success_icon)
+            "building" -> qsTile.icon = Icon.createWithResource(applicationContext, R.drawable.building_icon)
+            "failed" -> qsTile.icon = Icon.createWithResource(applicationContext, R.drawable.failed_icon)
+        }
+
         qsTile.label = "${job?.name}\n ${job?.version}"
         qsTile.updateTile()
     }
