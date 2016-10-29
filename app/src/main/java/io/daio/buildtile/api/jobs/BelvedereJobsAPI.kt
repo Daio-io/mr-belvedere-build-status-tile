@@ -37,4 +37,19 @@ class BelvedereJobsAPI(private val apiKey: String) {
 
     }
 
+    fun job(jobId: String?, success: ((Job?) -> Unit)? = null, failure: ((Throwable?) -> Unit)? = null) {
+
+        api.job(jobId, apiKey).enqueue(object: Callback<Job> {
+
+            override fun onFailure(call: Call<Job>?, t: Throwable?) {
+                failure?.invoke(t)
+            }
+
+            override fun onResponse(call: Call<Job>?, response: Response<Job>?) {
+                success?.invoke(response?.body())
+            }
+
+        })
+    }
+
 }

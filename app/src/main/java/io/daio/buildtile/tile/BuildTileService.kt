@@ -2,7 +2,6 @@ package io.daio.buildtile.tile
 
 import android.graphics.drawable.Icon
 import android.service.quicksettings.TileService
-import android.util.Log
 import io.daio.buildtile.Constants
 import io.daio.buildtile.R
 import io.daio.buildtile.api.jobs.BelvedereJobsAPI
@@ -10,7 +9,7 @@ import io.daio.buildtile.api.model.Job
 
 abstract class BuildTileService : TileService() {
 
-    abstract val buildName: String
+    abstract val jobId: String
 
     private val jobsApi = BelvedereJobsAPI(Constants.API_KEY)
 
@@ -41,11 +40,8 @@ abstract class BuildTileService : TileService() {
 
     private fun request() {
 
-        jobsApi.jobs({
-            val job = it?.filter {
-                it.name.equals(buildName)
-            }
-            updateTile(job?.first())
+        jobsApi.job(jobId, {
+            updateTile(it)
         })
     }
 
